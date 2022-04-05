@@ -16,7 +16,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 @AllArgsConstructor
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-
     private UserDetailsService service;
 
     @Override
@@ -32,14 +31,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .httpBasic();
     }
 
-    @Bean
+
+
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         //super.configure(auth);
         auth.inMemoryAuthentication()
                 .withUser("user").password("password").roles("USER")
                 .and()
-                .withUser("admin").password("password").roles("ADMIN");
+                .withUser("admin").password("password").roles("ADMIN")
+                .and()
+                .withUser("rubdh").password("password").roles("ADMIN");
+
     }
 
     @Bean
